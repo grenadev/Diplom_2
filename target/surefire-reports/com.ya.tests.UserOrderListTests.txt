@@ -1,0 +1,11 @@
+-------------------------------------------------------------------------------
+Test set: com.ya.tests.UserOrderListTests
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 3.117 s <<< FAILURE! - in com.ya.tests.UserOrderListTests
+getUsersOderList(com.ya.tests.UserOrderListTests)  Time elapsed: 2.569 s  <<< FAILURE!
+java.lang.AssertionError: 
+Response body does not contain correct error message 
+Expected: <2>
+     but: was <9350>
+	at com.ya.tests.UserOrderListTests.getUsersOderList(UserOrderListTests.java:79)
+
