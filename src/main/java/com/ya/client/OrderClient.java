@@ -3,7 +3,11 @@ package com.ya.client;
 import com.ya.model.Order;
 import com.ya.model.User;
 import io.qameta.allure.Step;
+import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import static io.restassured.RestAssured.given;
 
@@ -14,9 +18,21 @@ public class OrderClient extends StellarRestClient {
 
     @Step("Create new order")
     public ValidatableResponse createNewOrderWithoutToken(Order order) {
+
+        HashMap<String,Object> dataBody = new HashMap<String,Object>();
+
+        ArrayList<String> ingredientsList = new ArrayList<String>();
+        ingredientsList.add(order.getBun());
+        ingredientsList.add(order.getSouse());
+        ingredientsList.add(order.getMain());
+
+        dataBody.put("ingredients", ingredientsList);
+
+
         return given()
                 .spec(getBaseSpec())
-                .body("{\"ingredients\": [\"" + order.getBun() + "\",\"" + order.getSouse() + "\",\"" + order.getMain() + "\"]}")
+                .contentType(ContentType.JSON)
+                .body(dataBody)
                 .when()
                 .post(CREATE_ORDER_PATH)
                 .then();
@@ -24,10 +40,22 @@ public class OrderClient extends StellarRestClient {
 
     @Step("Create new order without Token")
     public ValidatableResponse createNewOrderWithToken(Order order, String auth) {
+
+        HashMap<String,Object> dataBody = new HashMap<String,Object>();
+
+        ArrayList<String> ingredientsList = new ArrayList<String>();
+        ingredientsList.add(order.getBun());
+        ingredientsList.add(order.getSouse());
+        ingredientsList.add(order.getMain());
+
+        dataBody.put("ingredients", ingredientsList);
+
+
         return given()
                 .spec(getBaseSpec())
                 .header("Authorization", auth)
-                .body("{\"ingredients\": [\"" + order.getBun() + "\",\"" + order.getSouse() + "\",\"" + order.getMain() + "\"]}")
+                .contentType(ContentType.JSON)
+                .body(dataBody)
                 .when()
                 .post(CREATE_ORDER_PATH)
                 .then();
@@ -35,9 +63,16 @@ public class OrderClient extends StellarRestClient {
 
     @Step("Create new order")
     public ValidatableResponse createNewOrderWithoutIngredients() {
+
+        HashMap<String,Object> dataBody = new HashMap<String,Object>();
+
+        ArrayList<String> ingredientsList = new ArrayList<String>();
+        dataBody.put("ingredients", ingredientsList);
+
         return given()
                 .spec(getBaseSpec())
-                .body("{\"ingredients\": []}")
+                .contentType(ContentType.JSON)
+                .body(dataBody)
                 .when()
                 .post(CREATE_ORDER_PATH)
                 .then();

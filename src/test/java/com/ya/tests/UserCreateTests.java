@@ -52,6 +52,13 @@ public class UserCreateTests {
         int statusCode = loginResponse.extract().statusCode();
         String errorStatus = loginResponse.extract().body().path("message");
 
+        //Если в случае ошибки пользователь №2 был создан то
+
+        if (loginResponse.extract().body().path("accessToken") != null) {
+            String auth = loginResponse.extract().body().path("accessToken");
+            userClient.deleteUser(auth);
+        }
+
         assertThat("Response status not 403", statusCode, equalTo(403));
         assertThat("Response body does not contain error message", errorStatus, equalTo("User already exists"));
     }
@@ -63,6 +70,14 @@ public class UserCreateTests {
         ValidatableResponse loginResponse = userClient.createNewUser(user);
         int statusCode = loginResponse.extract().statusCode();
         String errorStatus = loginResponse.extract().body().path("message");
+
+        //Если в случае ошибки пользователь №2 был создан то
+
+        if (loginResponse.extract().body().path("accessToken") != null) {
+            String auth = loginResponse.extract().body().path("accessToken");
+            userClient.deleteUser(auth);
+        }
+
 
         assertThat("Response status not 403", statusCode, equalTo(403));
         assertThat("Response body does not contain error message", errorStatus, equalTo("Email, password and name are required fields"));

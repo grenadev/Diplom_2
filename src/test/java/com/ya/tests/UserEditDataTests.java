@@ -145,4 +145,6 @@ public class UserEditDataTests {
         assertThat("Response status not 403", statusCode, equalTo(403));
         assertThat("Error message should be different", errorMessage, equalTo("User with such email already exists"));
     }
+
+
 }
