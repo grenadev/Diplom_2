@@ -90,7 +90,7 @@ public class UserClient extends StellarRestClient {
                 .spec(getBaseSpec())
                 .header("Authorization", auth)
                 .when()
-                .patch(EDIT_USER_PATH)
+                .delete(EDIT_USER_PATH)
                 .then();
     }
 }
