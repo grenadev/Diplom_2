@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.ya.tests.UserCreateTests
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.853 s - in com.ya.tests.UserCreateTests

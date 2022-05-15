@@ -1,0 +1,5 @@
+com\ya\tests\UserCreateTests.class
+com\ya\tests\UserLoginTests.class
+com\ya\tests\OrderCreateTests.class
+com\ya\tests\UserEditDataTests.class
+com\ya\tests\UserOrderListTests.class
